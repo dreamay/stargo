@@ -1,26 +1,23 @@
 package utl
 
 import (
-    "os/exec"
-    "fmt"
+	"fmt"
+	"os/exec"
 )
 
 // Run local shell command
 func RunShellScript(scriptName string) (string, error) {
-    var errmess string
-    cmd := exec.Command("/bin/bash", "-c", scriptName)
-    res, err := cmd.Output()
-    if err != nil {
-        errmess = fmt.Sprintf("Error in run command [ %s ], err = %v", scriptName, err)
-	Log("DEBUG", errmess)
-        //panic(err)
-        return "", err
-    }
+	var errmess string
+	cmd := exec.Command("/bin/bash", "-c", scriptName)
+	res, err := cmd.Output()
+	if err != nil {
+		errmess = fmt.Sprintf("Error in run command [ %s ], err = %v", scriptName, err)
+		Log("DEBUG", errmess)
+		//panic(err)
+		return "", err
+	}
 
-
-    return string(res), nil
+	return string(res), nil
 }
 
 // Run ssh shell command
-
-
