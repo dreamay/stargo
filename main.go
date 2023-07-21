@@ -135,8 +135,12 @@ func main() {
 			//prepareOption.TestPreCheck()
 			//prepareOption.PreCheckSR()
 			//playground.DeployPlayground()
-		case "--help":
-			infoMess = `--help
+		default:
+			infoMess = fmt.Sprintf("ERROR, sr-ctl-cluster don't support %s option", command)
+			utl.Log("ERROR", infoMess)
+		} // end of switch command, end of case cluster
+	case "--help":
+		infoMess = `--help
 	stargo <component> [args...]
 	Examples:
 	$ stargo playground               # Quick start
@@ -154,11 +158,7 @@ func main() {
 	  	display        Display information of a StarRocks cluster
 	  	list           ist all clusters
 	  	import         Import an exist StarRocks cluster from StarRocks cluster`
-			utl.Log("INFO", infoMess)
-		default:
-			infoMess = fmt.Sprintf("ERROR, sr-ctl-cluster don't support %s option", command)
-			utl.Log("ERROR", infoMess)
-		} // end of switch command, end of case cluster
+		fmt.Printf(infoMess)
 	default:
 		fmt.Printf("ERROR component input.\n")
 	} // end of switch component
